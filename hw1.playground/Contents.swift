@@ -22,11 +22,11 @@ class Words {
 //: ### variables the same type? If not, why?
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: They are not the same type. The ones passed into the init() function are optionals that have not been unwrapped. The values that are being set to the instance variables are unwrapped optionals. They are of type String or Nil.
 
 
 //: ## Q2: Variable Types and Function Types
-    func arePalindromes(_ words: [String]) -> Bool {
+    class func arePalindromes(_ words: [String]) -> Bool? {
         let reversedWords = words.map() {String($0.characters.reversed())}
         let numElements = words.count
         
@@ -35,20 +35,21 @@ class Words {
                 return false
             }
         }
+        return true
     }
 //: ### Why does the compiler dislike the **for loop**? Fix it.
 //: ### What else is wrong with this function? You may have to refer to (but **not**
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: The function had to be changed from funct arePalindromes() to class funct are Palindromes() because the code below was using it as a class method. Also the function forgot to return true after the for loop. If it is a Palindrome it should return true.
 
 
 //: ## Q3: More Functions and Object Initialization
-    class func isAnagram() -> Bool {
-        var countLetters : [Character : Int] //Line X
-        var lenA = self.wordA.characters.count
-        var lenB = self.wordB.characters.count
+    func isAnagram() -> Bool? {
+        var countLetters : [Character : Int] = [Character: Int] () //Line X
+        let lenA = self.wordA.characters.count
+        let lenB = self.wordB.characters.count
         
         if lenA != lenB {
             return false
@@ -75,7 +76,7 @@ class Words {
             }
         }
         
-        for (letter, count) in countLetters {
+        for (_, count) in countLetters {
             if count != 0 {
                 return false
             }
@@ -89,7 +90,7 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//:  The problem is that we did not initialize the countLetters variable. We only declared the types but did not actually initialize countLetters. Another thing that is wrong here was that we were outputing a type Bool in the function, however the function also returns a nil, therefore we want the return type of the function to be a Boolean optional (Bool?) instead. Also the function was declared as a class method, but below they were using it as an instance method, therefore, I had to remove the word "class" from the declaration of the function.
     
     
 }
